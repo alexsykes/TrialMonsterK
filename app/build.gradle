@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace 'com.alexsykes.trialmonsterk'
-    compileSdk 33
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.alexsykes.trialmonsterk"
-        minSdk 24
-        targetSdk 33
+        minSdk 20
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 

@@ -1,5 +1,6 @@
 package com.alexsykes.trialmonsterk
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import java.text.ParsePosition
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 
 class TrialListAdapter : ListAdapter<Trial, TrialViewHolder>(TrialsComparator()) {
 
@@ -28,7 +33,7 @@ class TrialListAdapter : ListAdapter<Trial, TrialViewHolder>(TrialsComparator())
 
         fun bind(trial: Trial?) {
             trialNameView.text = trial?.name
-            trialDateView.text = trial?.date
+            trialDateView.text = trial?.formatted_date
             trialClubView.text = trial?.club
         }
 
@@ -40,6 +45,7 @@ class TrialListAdapter : ListAdapter<Trial, TrialViewHolder>(TrialsComparator())
             }
         }
 
+
     }
 
     class TrialsComparator : DiffUtil.ItemCallback<Trial>() {
@@ -50,6 +56,5 @@ class TrialListAdapter : ListAdapter<Trial, TrialViewHolder>(TrialsComparator())
         override fun areContentsTheSame(oldItem: Trial, newItem: Trial): Boolean {
             return oldItem.name == newItem.name
         }
-
     }
 

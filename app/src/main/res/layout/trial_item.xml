@@ -7,22 +7,22 @@
     <TextView
         android:id="@+id/dateView"
         style="@style/trial_list"
-        android:layout_width="30dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0" />
+        android:layout_weight="2" />
 
     <TextView
         android:id="@+id/clubView"
         style="@style/trial_list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2" />
+        android:layout_weight="3" />
 
     <TextView
         android:id="@+id/nameView"
         style="@style/trial_list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="4" />
+        android:layout_weight="5" />
 
 </LinearLayout>

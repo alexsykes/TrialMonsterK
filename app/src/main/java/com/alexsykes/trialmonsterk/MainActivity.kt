@@ -61,8 +61,9 @@ class MainActivity : AppCompatActivity() {
             val club: String = trial.getString("club")
             val trialName: String = trial.getString("name")
             val location: String = trial.getString("location")
+            val formatted_date: String = trial.getString("formatted_date")
 
-            val newTrial: Trial = Trial(id, trialName, club,date, location)
+            val newTrial: Trial = Trial(id, trialName, club,date, location,formatted_date )
             trialViewModel.insert(newTrial)
 
             Log.i(TAG, "addTrialsToDb: " + id)

@@ -17,5 +17,4 @@ interface TrialDao {
 
     @Query("DELETE FROM trials")
     suspend fun deleteAll()
-
 }

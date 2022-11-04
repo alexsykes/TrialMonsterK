@@ -29,9 +29,6 @@ public abstract class TrialRoomDatabase : RoomDatabase() {
 
         suspend fun populateDatabase(trialDao: TrialDao) {
             trialDao.deleteAll()
-
-            var trial = Trial(1, "New Year Trial", "Darwen","01-01-2023", "Warmden Quarry")
-            trialDao.insert(trial)
         }
     }
 

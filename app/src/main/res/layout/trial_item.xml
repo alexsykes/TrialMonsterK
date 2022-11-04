@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/textView"
-        style="@style/trial_name"
-        android:layout_width="match_parent"
+        android:id="@+id/dateView"
+        style="@style/trial_list"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_light" />
+        android:layout_weight="0" />
+
+    <TextView
+        android:id="@+id/clubView"
+        style="@style/trial_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2" />
+
+    <TextView
+        android:id="@+id/nameView"
+        style="@style/trial_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4" />
+
 </LinearLayout>

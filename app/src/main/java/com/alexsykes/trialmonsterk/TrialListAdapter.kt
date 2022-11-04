@@ -17,15 +17,19 @@ class TrialListAdapter : ListAdapter<Trial, TrialViewHolder>(TrialsComparator())
 
     override fun onBindViewHolder(holder: TrialViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.name)
+        holder.bind(current)
     }
 }
 
     class TrialViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val trialItemView: TextView = itemView.findViewById(R.id.textView)
+        private val trialNameView: TextView = itemView.findViewById(R.id.nameView)
+        private val trialDateView: TextView = itemView.findViewById(R.id.dateView)
+        private val trialClubView: TextView = itemView.findViewById(R.id.clubView)
 
-        fun bind(text: String?) {
-            trialItemView.text = text
+        fun bind(trial: Trial?) {
+            trialNameView.text = trial?.name
+            trialDateView.text = trial?.date
+            trialClubView.text = trial?.club
         }
 
         companion object {

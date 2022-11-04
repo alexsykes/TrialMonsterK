@@ -4,13 +4,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import java.util.concurrent.Flow
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TrialDao {
 
     @Query("SELECT * FROM trials ORDER BY date DESC")
-    suspend fun getTrialList(): Flow<List<Trial>>
+     fun getTrialList(): Flow<List<Trial>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(trial: Trial)

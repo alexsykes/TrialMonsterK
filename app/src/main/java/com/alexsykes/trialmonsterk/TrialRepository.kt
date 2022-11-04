@@ -1,7 +1,7 @@
 package com.alexsykes.trialmonsterk
 
 import androidx.annotation.WorkerThread
-import java.util.concurrent.Flow
+import kotlinx.coroutines.flow.Flow
 
 class TrialRepository(private val trialDao: TrialDao) {
 

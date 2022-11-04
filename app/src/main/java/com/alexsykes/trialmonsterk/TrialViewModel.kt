@@ -3,7 +3,9 @@ package com.alexsykes.trialmonsterk
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class TrialViewModel(private val repository: TrialRepository) : ViewModel() {

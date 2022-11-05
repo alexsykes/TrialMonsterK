@@ -13,7 +13,7 @@ interface TrialDao {
     fun getTrialList(): Flow<List<Trial>>
 
     @Query("SELECT * FROM trials WHERE id = :trialid")
-    fun getTrialDetail(trialid: Int): Trial
+    fun getTrialDetail(trialid: Int): Flow<Trial>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(trial: Trial)

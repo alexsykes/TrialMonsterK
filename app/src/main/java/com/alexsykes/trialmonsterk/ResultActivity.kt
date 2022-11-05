@@ -20,6 +20,6 @@ class ResultActivity : AppCompatActivity() {
 
         var intent: Intent = getIntent()
         val trialid: Int = intent.getIntExtra("trialid", 0)
-        trial = trialViewModel.getTrial(trialid)
+        trialViewModel.getTrial(trialid)
     }
 }

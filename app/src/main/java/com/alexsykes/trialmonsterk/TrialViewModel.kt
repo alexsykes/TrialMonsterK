@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class TrialViewModel(private val repository: TrialRepository) : ViewModel() {
     val trialid: Int = 0
     val allTrials: LiveData<List<Trial>> = repository.allTrials.asLiveData()
-    val trial: Trial = repository.getTrial(trialid)
+    val trial: Flow<Trial> = repository.getTrial(trialid)
     fun insert(trial: Trial) = viewModelScope.launch {
         repository.insert(trial)
     }

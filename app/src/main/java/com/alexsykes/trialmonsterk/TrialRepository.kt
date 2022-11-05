@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 class TrialRepository(private val trialDao: TrialDao) {
     val trialid: Int = 0
     val allTrials: Flow<List<Trial>> = trialDao.getTrialList()
-    val trial: Trial = trialDao.getTrialDetail(trialid)
+    val trial: Flow<Trial> = trialDao.getTrialDetail(trialid)
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
@@ -14,7 +14,7 @@ class TrialRepository(private val trialDao: TrialDao) {
         trialDao.insert(trial)
     }
 
-    fun  getTrial(trialid: Int): Trial {
+     fun  getTrial(trialid: Int): Flow<Trial> {
         return trialDao.getTrialDetail(trialid)
     }
 }

@@ -1,6 +1,8 @@
 package com.alexsykes.trialmonsterk
 
+import android.content.Intent
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,8 @@ import java.util.Date
 import java.util.Locale
 
 class TrialListAdapter : ListAdapter<Trial, TrialViewHolder>(TrialsComparator()) {
+    val TAG: String = "Info"
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrialViewHolder {
         return TrialViewHolder.create(parent)
@@ -23,6 +27,11 @@ class TrialListAdapter : ListAdapter<Trial, TrialViewHolder>(TrialsComparator())
     override fun onBindViewHolder(holder: TrialViewHolder, position: Int) {
         val current = getItem(position)
         holder.bind(current)
+        holder.itemView.setOnClickListener(View.OnClickListener {
+            Log.i(TAG, "Clicked: " + current?.id)
+            val intent = Intent(it.context, ResultActivity::class.java)
+            it.context.startActivity(intent)
+        })
     }
 }
 
@@ -35,6 +44,7 @@ class TrialListAdapter : ListAdapter<Trial, TrialViewHolder>(TrialsComparator())
             trialNameView.text = trial?.name
             trialDateView.text = trial?.formatted_date
             trialClubView.text = trial?.club
+
         }
 
         companion object {

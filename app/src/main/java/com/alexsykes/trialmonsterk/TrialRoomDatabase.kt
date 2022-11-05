@@ -5,13 +5,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.alexsykes.trialmonsterk.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
-@Database(entities = arrayOf(Trial::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Trial::class, Result::class), version = 1, exportSchema = false)
 public abstract class TrialRoomDatabase : RoomDatabase() {
     abstract fun trialDao(): TrialDao
+    abstract fun resultDao(): ResultDao
 
     private class TrialDatabaseCallback(
         private val scope: CoroutineScope
@@ -22,13 +24,14 @@ public abstract class TrialRoomDatabase : RoomDatabase() {
             INSTANCE?.let {
                     database ->
                 scope.launch {
-                    populateDatabase(database.trialDao())
+                    populateDatabase(database.trialDao(), database.resultDao())
                 }
             }
         }
 
-        suspend fun populateDatabase(trialDao: TrialDao) {
+        suspend fun populateDatabase(trialDao: TrialDao, resultDao: ResultDao) {
             trialDao.deleteAll()
+            resultDao.deleteAll()
         }
     }
 

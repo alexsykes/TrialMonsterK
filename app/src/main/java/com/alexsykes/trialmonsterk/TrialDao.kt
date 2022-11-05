@@ -12,7 +12,7 @@ interface TrialDao {
     @Query("SELECT * FROM trials ORDER BY date DESC")
      fun getTrialList(): Flow<List<Trial>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(trial: Trial)
 
     @Query("DELETE FROM trials")

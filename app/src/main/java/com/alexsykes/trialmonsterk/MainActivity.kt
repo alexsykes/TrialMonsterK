@@ -1,9 +1,13 @@
 package com.alexsykes.trialmonsterk
 
+import android.content.Context
+import android.content.SharedPreferences
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,13 +16,19 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONObject
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
     val TAG: String = "Info"
+    var prefs: SharedPreferences? = null
     private val trialViewModel: TrialViewModel by viewModels {
         TrialViewModelFactory((application as TrialApplication).repository)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,6 +44,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         getTrialList()
+        prefs = getSharedPreferences("prefs", Context.MODE_PRIVATE)
+        val sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
+        with (sharedPref.edit()) {
+            val timestamp = LocalDateTime.now()
+//            val formatter = DateTimeFormatter.RFC_1123_DATE_TIME
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            val formatted = timestamp.format(formatter)
+//            putLong("Lastrefreshed", )
+            putString("Refreshed", formatted)
+            apply()
+        }
     }
 
     public fun getTrialList() {

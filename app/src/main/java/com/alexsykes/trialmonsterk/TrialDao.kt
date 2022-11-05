@@ -10,7 +10,10 @@ import kotlinx.coroutines.flow.Flow
 interface TrialDao {
 
     @Query("SELECT * FROM trials ORDER BY date DESC")
-     fun getTrialList(): Flow<List<Trial>>
+    fun getTrialList(): Flow<List<Trial>>
+
+    @Query("SELECT * FROM trials WHERE id = :trialid")
+    fun getTrialDetail(trialid: Int): Trial
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(trial: Trial)

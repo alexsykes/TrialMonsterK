@@ -1,5 +1,6 @@
 package com.alexsykes.trialmonsterk
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.util.Log
@@ -28,10 +29,10 @@ class TrialListAdapter : ListAdapter<Trial, TrialViewHolder>(TrialsComparator())
         val current = getItem(position)
         holder.bind(current)
         holder.itemView.setOnClickListener(View.OnClickListener {
-            Log.i(TAG, "Clicked: " + current?.id)
             val intent = Intent(it.context, ResultActivity::class.java)
-            it.context.startActivity(intent)
-        })
+            intent.putExtra("trialid", current?.id)
+                it.context.startActivity(intent)
+            })
     }
 }
 

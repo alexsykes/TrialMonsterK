@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     public fun getTrialList() {
         val queue = Volley.newRequestQueue(this)
-        val  url: String = "https://android.trialmonster.uk/getAndroidPastTrials.php"
+        val  url: String = "https://android.trialmonster.uk/getTrialListKotlin.php"
 
         val stringReq = StringRequest(
             Request.Method.GET, url, { response ->
@@ -82,9 +82,11 @@ class MainActivity : AppCompatActivity() {
             val club: String = trial.getString("club")
             val trialName: String = trial.getString("name")
             val location: String = trial.getString("location")
+            val classlist: String = trial.getString("classlist")
+            val courselist: String = trial.getString("courselist")
             val formatted_date: String = trial.getString("formatted_date")
 
-            val newTrial: Trial = Trial(id, trialName, club,date, location,formatted_date )
+            val newTrial: Trial = Trial(id, trialName, club,date, location, classlist, courselist, formatted_date )
             trialViewModel.insert(newTrial)
 
             Log.i(TAG, "addTrialsToDb: " + id)

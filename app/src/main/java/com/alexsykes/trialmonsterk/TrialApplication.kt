@@ -9,5 +9,5 @@ class TrialApplication: Application() {
     val applicationScope = CoroutineScope(SupervisorJob())
 
     val database by lazy { TrialRoomDatabase.getDatabase(this, applicationScope) }
-    val trialRepository by lazy { TrialRepository(database.trialDao()) }
+    val trialRepository by lazy { TrialRepository(database.trialDao(), database.resultDao()) }
 }

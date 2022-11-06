@@ -13,13 +13,11 @@ interface ResultDao {
     @Query("DELETE FROM results")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM results WHERE trialid = :trialid")
-    fun getTrialDetail(trialid: Int): Flow<List<Result>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(results: Result)
 
-//    @MapInfo(keyColumn = "layername", valueColumn = "placename")
-//    @Query("SELECT layers.layername AS layername, layers.isVisible AS isVisible, markers.* FROM layers JOIN markers ON layers.layername = markers.layer_id WHERE markers.isArchived = 0 ORDER BY layername, placename")
-//    fun getMarkersByLayer(): Map<String?, List<MMarker?>?>?
+    @Query("SELECT * FROM results WHERE trialid = :trialid ORDER BY dnf, course, total DESC, cleans DESC, ones DESC, twos DESC, threes DESC, scores ASC;")
+    fun getTrialResults(trialid: Int): Flow<List<Result>>
+
 }

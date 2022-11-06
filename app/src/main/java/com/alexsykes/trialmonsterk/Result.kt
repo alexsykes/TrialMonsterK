@@ -22,5 +22,7 @@ class Result (
     @ColumnInfo(name="missed") val missed: Int,
     @ColumnInfo(name="dnf") val dnf: Int,
     @ColumnInfo(name="sectionscores") val sectionscores: String,
-    @ColumnInfo(name="scores") val scores: String
+    @ColumnInfo(name="scores") val scores: String,
+    @ColumnInfo(name="created") val created: String,
+    @ColumnInfo(name="updated") val modified: String
 )

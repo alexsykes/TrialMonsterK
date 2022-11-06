@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity() {
     private val trialViewModel: TrialViewModel by viewModels {
         TrialViewModelFactory((application as TrialApplication).repository)
     }
+    private val resultViewModel: ResultViewModel by viewModels {
+        ResultViewModelFactory((application as TrialApplication).repository)
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,14 +45,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         getTrialList()
+
+        getResultList()
         prefs = getSharedPreferences("prefs", Context.MODE_PRIVATE)
         val sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
         with (sharedPref.edit()) {
             val timestamp = LocalDateTime.now()
-//            val formatter = DateTimeFormatter.RFC_1123_DATE_TIME
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
             val formatted = timestamp.format(formatter)
-//            putLong("Lastrefreshed", )
             putString("Refreshed", formatted)
             apply()
         }
@@ -61,13 +64,65 @@ class MainActivity : AppCompatActivity() {
 
         val stringReq = StringRequest(
             Request.Method.GET, url, { response ->
-            var strResp = response.toString()
-            val jsonArray: JSONArray = JSONArray(strResp)
-            addTrialsToDb(jsonArray)
-        },
+                var strResp = response.toString()
+                val jsonArray: JSONArray = JSONArray(strResp)
+                addTrialsToDb(jsonArray)
+            },
 
             { Log.i(TAG, "That didn't work!") })
         queue.add(stringReq)
+    }
+
+
+
+    private fun getResultList() {
+        val queue = Volley.newRequestQueue(this)
+        val  url: String = "https://android.trialmonster.uk/getResultListKotlin.php"
+
+        val stringReq = StringRequest(
+            Request.Method.GET, url, { response ->
+                var strResp = response.toString()
+                val jsonArray: JSONArray = JSONArray(strResp)
+                addResultsToDb(jsonArray)
+            },
+
+            { Log.i(TAG, "That didn't work!") })
+        queue.add(stringReq)
+    }
+
+    private fun addResultsToDb(array: JSONArray) {
+        for (i in 0 until array.length()) {
+
+            val result: JSONObject = array.getJSONObject(i)
+
+            val id: Int = result.getInt("id")
+            val trialid: Int = result.getInt("trialid")
+            val rider: String = result.getString("rider")
+            val course: String = result.getString("course")
+            val name: String = result.getString("name")
+            val classs: String = result.getString("class")
+            val machine: String = result.getString("machine")
+            val total: Int = result.getInt("total")
+            val cleans: Int = result.getInt("cleans")
+            val ones: Int = result.getInt("ones")
+            val twos: Int = result.getInt("twos")
+            val threes: Int = result.getInt("threes")
+            val fives: Int = result.getInt("fives")
+            val missed: Int = result.getInt("missed")
+            val dnf: Int = result.getInt("dnf")
+            val scores: String = result.getString("scores")
+            val sectionscores: String = result.getString("sectionscores")
+            val created: String = result.getString("created")
+            val modified: String = result.getString("modified")
+
+            val newResult: Result = Result(id, trialid, rider, course, name, classs, machine, total, cleans, ones, twos, threes, fives, missed,
+            dnf, scores, sectionscores, created, modified)
+            resultViewModel.insert(newResult)
+
+            Log.i(TAG, "addResultsToDb: " + id)
+
+        }
+
     }
 
     fun addTrialsToDb(array: JSONArray) {

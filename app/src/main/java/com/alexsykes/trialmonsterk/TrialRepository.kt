@@ -17,4 +17,8 @@ class TrialRepository(private val trialDao: TrialDao) {
      fun  getTrial(trialid: Int): Flow<Trial> {
         return trialDao.getTrialDetail(trialid)
     }
+
+    suspend fun insert(result: Result) {
+        trialDao.insert(result)
+    }
 }

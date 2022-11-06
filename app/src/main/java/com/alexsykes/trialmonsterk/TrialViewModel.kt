@@ -16,6 +16,10 @@ class TrialViewModel(private val repository: TrialRepository) : ViewModel() {
         repository.insert(trial)
     }
 
+    fun insert(result: Result) = viewModelScope.launch {
+        repository.insert(result)
+    }
+
 //    fun getTrial(trialid: Int): Trial {
 //        return trial
 //    }

@@ -10,5 +10,4 @@ class TrialApplication: Application() {
 
     val database by lazy { TrialRoomDatabase.getDatabase(this, applicationScope) }
     val trialRepository by lazy { TrialRepository(database.trialDao()) }
-    val resultRepository by lazy { ResultRepository(database.resultDao()) }
 }

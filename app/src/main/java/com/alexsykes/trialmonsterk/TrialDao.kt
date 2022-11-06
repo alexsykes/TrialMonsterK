@@ -18,6 +18,9 @@ interface TrialDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(trial: Trial)
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(result: Result)
+
     @Query("DELETE FROM trials")
     suspend fun deleteAll()
 }

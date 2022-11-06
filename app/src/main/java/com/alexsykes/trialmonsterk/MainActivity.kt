@@ -25,9 +25,6 @@ class MainActivity : AppCompatActivity() {
     private val trialViewModel: TrialViewModel by viewModels {
         TrialViewModelFactory((application as TrialApplication).trialRepository)
     }
-    private val resultViewModel: ResultViewModel by viewModels {
-        ResultViewModelFactory((application as TrialApplication).resultRepository)
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,6 +93,7 @@ class MainActivity : AppCompatActivity() {
             val result: JSONObject = array.getJSONObject(i)
 
             val id: Int = result.getInt("id")
+            Log.i(TAG,"id: " + id )
             val trialid: Int = result.getInt("trialid")
             val rider: String = result.getString("rider")
             val course: String = result.getString("course")
@@ -117,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
             val newResult: Result = Result(id, trialid, rider, course, name, classs, machine, total, cleans, ones, twos, threes, fives, missed,
             dnf, scores, sectionscores, created, modified)
-            resultViewModel.insert(newResult)
+            trialViewModel.insert(newResult)
 
             Log.i(TAG, "addResultsToDb: " + id)
 

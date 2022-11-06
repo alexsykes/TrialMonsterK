@@ -3,7 +3,6 @@ package com.alexsykes.trialmonsterk
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +12,7 @@ class ResultActivity : AppCompatActivity() {
     val TAG: String = "Info"
 
     private val trialViewModel: TrialViewModel by viewModels {
-        TrialViewModelFactory((application as TrialApplication).repository)
+        TrialViewModelFactory((application as TrialApplication).trialRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

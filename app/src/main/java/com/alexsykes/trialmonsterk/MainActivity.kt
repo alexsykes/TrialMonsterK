@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity() {
     val TAG: String = "Info"
     var prefs: SharedPreferences? = null
     private val trialViewModel: TrialViewModel by viewModels {
-        TrialViewModelFactory((application as TrialApplication).repository)
+        TrialViewModelFactory((application as TrialApplication).trialRepository)
     }
     private val resultViewModel: ResultViewModel by viewModels {
-        ResultViewModelFactory((application as TrialApplication).repository)
+        ResultViewModelFactory((application as TrialApplication).resultRepository)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

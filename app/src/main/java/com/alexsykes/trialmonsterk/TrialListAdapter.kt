@@ -31,6 +31,13 @@ class TrialListAdapter : ListAdapter<Trial, TrialViewHolder>(TrialsComparator())
         holder.itemView.setOnClickListener(View.OnClickListener {
             val intent = Intent(it.context, ResultActivity::class.java)
             intent.putExtra("trialid", current?.id)
+            intent.putExtra("club", current?.club)
+            intent.putExtra("classlist", current?.classlist)
+            intent.putExtra("name", current?.name)
+            intent.putExtra("formatted_date", current?.formatted_date)
+            intent.putExtra("courselist", current?.courselist)
+            intent.putExtra("updated", current?.updated)
+            intent.putExtra("venue", current?.venue)
                 it.context.startActivity(intent)
             })
     }

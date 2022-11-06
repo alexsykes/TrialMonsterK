@@ -16,10 +16,8 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONObject
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Date
 
 class MainActivity : AppCompatActivity() {
     val TAG: String = "Info"
@@ -85,8 +83,9 @@ class MainActivity : AppCompatActivity() {
             val classlist: String = trial.getString("classlist")
             val courselist: String = trial.getString("courselist")
             val formatted_date: String = trial.getString("formatted_date")
+            val updated: String = trial.getString("updated")
 
-            val newTrial: Trial = Trial(id, trialName, club,date, location, classlist, courselist, formatted_date )
+            val newTrial: Trial = Trial(id, trialName, club,date, location, classlist, courselist, formatted_date, updated )
             trialViewModel.insert(newTrial)
 
             Log.i(TAG, "addTrialsToDb: " + id)

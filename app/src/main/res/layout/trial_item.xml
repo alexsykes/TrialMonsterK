@@ -9,20 +9,23 @@
         style="@style/trial_list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2" />
+        android:layout_weight="2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/clubView"
         style="@style/trial_list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="3" />
+        android:layout_weight="3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/nameView"
         style="@style/trial_list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="5" />
+        android:layout_weight="5"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>

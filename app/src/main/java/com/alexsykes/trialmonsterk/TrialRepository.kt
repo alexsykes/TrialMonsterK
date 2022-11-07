@@ -5,8 +5,10 @@ import kotlinx.coroutines.flow.Flow
 
 class TrialRepository(private val trialDao: TrialDao, private val resultDao: ResultDao) {
     val trialid: Int = 0
+    val course: String = ""
     val allTrials: Flow<List<Trial>> = trialDao.getTrialList()
     val trial: Flow<Trial> = trialDao.getTrialDetail(trialid)
+    val courseResults: Flow<List<Result>> = resultDao.getCourseResults(trialid, course)
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
@@ -18,8 +20,12 @@ class TrialRepository(private val trialDao: TrialDao, private val resultDao: Res
         return trialDao.getTrialDetail(trialid)
     }
 
-    fun getTrialResults(trialid: Int) : Flow<List<Result>> {
+    suspend fun getTrialResults(trialid: Int) : List<Result> {
         return resultDao.getTrialResults(trialid)
+    }
+
+     fun getCourseResults(trialid: Int, course: String): Flow<List<Result>> {
+        return resultDao.getCourseResults(trialid, course)
     }
 
     suspend fun insert(result: Result) {

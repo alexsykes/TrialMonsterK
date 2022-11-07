@@ -18,6 +18,8 @@ interface ResultDao {
     suspend fun insert(results: Result)
 
     @Query("SELECT * FROM results WHERE trialid = :trialid ORDER BY dnf, course, total DESC, cleans DESC, ones DESC, twos DESC, threes DESC, scores ASC;")
-    fun getTrialResults(trialid: Int): Flow<List<Result>>
+    fun getTrialResults(trialid: Int): List<Result>
 
+    @Query("SELECT * FROM results WHERE trialid = :trialid AND course = :course ORDER BY dnf, course, total DESC, cleans DESC, ones DESC, twos DESC, threes DESC, scores ASC;")
+    fun getCourseResults(trialid: Int, course: String): Flow<List<Result>>
 }

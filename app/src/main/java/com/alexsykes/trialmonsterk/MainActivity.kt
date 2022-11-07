@@ -118,9 +118,7 @@ class MainActivity : AppCompatActivity() {
             trialViewModel.insert(newResult)
 
             Log.i(TAG, "addResultsToDb: " + id)
-
         }
-
     }
 
     fun addTrialsToDb(array: JSONArray) {

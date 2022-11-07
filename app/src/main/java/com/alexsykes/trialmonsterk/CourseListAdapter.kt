@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
 
 class CourseListAdapter(private val courseList: List<String>) : RecyclerView.Adapter<CourseListAdapter.CourseViewHolder>() {
@@ -21,10 +22,13 @@ class CourseListAdapter(private val courseList: List<String>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: CourseViewHolder, position: Int) {
         val course = courseList.get(position)
         holder.courseLabel.text = course
+
     }
 
     class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
+
          val courseLabel: TextView = itemView.findViewById(R.id.courseLabel)
+        val courseResultRecyclerView: RecyclerView = itemView.findViewById(R.id.courseResultRecyclerView)
 
 //        fun bind(course: String) {
 //            courseLabel.text = course

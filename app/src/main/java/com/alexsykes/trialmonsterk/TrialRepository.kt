@@ -1,6 +1,7 @@
 package com.alexsykes.trialmonsterk
 
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import kotlinx.coroutines.flow.Flow
 
 class TrialRepository(private val trialDao: TrialDao, private val resultDao: ResultDao) {
@@ -24,8 +25,12 @@ class TrialRepository(private val trialDao: TrialDao, private val resultDao: Res
         return resultDao.getTrialResults(trialid)
     }
 
-     fun getCourseResults(trialid: Int, course: String): Flow<List<Result>> {
+    fun getCourseResults(trialid: Int, course: String): Flow<List<Result>> {
         return resultDao.getCourseResults(trialid, course)
+    }
+
+    fun getResultsByCourse(trialid: Int, course: String): Flow<List<Result>> {
+        return resultDao.getResultsByCourse(trialid, course)
     }
 
     suspend fun insert(result: Result) {

@@ -1,5 +1,6 @@
 package com.alexsykes.trialmonsterk
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.MapInfo
@@ -22,4 +23,8 @@ interface ResultDao {
 
     @Query("SELECT * FROM results WHERE trialid = :trialid AND course = :course ORDER BY dnf, course, total DESC, cleans DESC, ones DESC, twos DESC, threes DESC, scores ASC;")
     fun getCourseResults(trialid: Int, course: String): Flow<List<Result>>
+
+    @MapInfo(keyColumn = "course", valueColumn = "course")
+    @Query("SELECT * FROM results WHERE trialid = :trialid AND course = :course")
+     fun getResultsByCourse(trialid: Int, course: String): Flow<List<Result>>
 }

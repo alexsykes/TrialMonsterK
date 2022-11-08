@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,12 +35,12 @@ class ResultActivity : AppCompatActivity() {
         mainRV.layoutManager = LinearLayoutManager(this)
         mainRV.adapter = adapter
 
-        trialViewModel.getCourseResults(61,"Expert").observe(owner = this) { courses ->
-            // Update the cached copy of the words in the adapter.
-            Log.i(TAG, "data: " + courses)
-//            trials.let { adapter.submitList(it) }
+        for (i in 0..courses.size - 1) {
+            var course = courses.get(i)
+            trialViewModel.getResultsByCourse(trialid, course).observe(this) { results ->
+                Log.i(TAG, "results: " + results.size)
+            }
         }
-
     }
 
 

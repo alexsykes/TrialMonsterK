@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             val result: JSONObject = array.getJSONObject(i)
 
             val id: Int = result.getInt("id")
-            Log.i(TAG,"id: " + id )
+//            Log.i(TAG,"id: " + id )
             val trialid: Int = result.getInt("trialid")
             val rider: String = result.getString("rider")
             val course: String = result.getString("course")
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
             dnf, scores, sectionscores, created, modified)
             trialViewModel.insert(newResult)
 
-            Log.i(TAG, "addResultsToDb: " + id)
+//            Log.i(TAG, "addResultsToDb: " + id)
         }
     }
 
@@ -138,8 +138,8 @@ class MainActivity : AppCompatActivity() {
 
             val newTrial: Trial = Trial(id, trialName, club,date, location, classlist, courselist, formatted_date, updated )
             trialViewModel.insert(newTrial)
-
-            Log.i(TAG, "addTrialsToDb: " + id)
+//
+//            Log.i(TAG, "addTrialsToDb: " + id)
 
         }
     }

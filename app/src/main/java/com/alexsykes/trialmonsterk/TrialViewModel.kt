@@ -30,6 +30,10 @@ class TrialViewModel(private val repository: TrialRepository) : ViewModel() {
     fun getCourseResults(trialid: Int, course: String): LiveData<List<Result>> {
         return repository.getCourseResults(trialid, course).asLiveData()
     }
+
+    fun getResultsByCourse(trialid: Int, course: String): LiveData<List<Result>> {
+        return repository.getResultsByCourse(trialid, course).asLiveData()
+    }
 }
 
 class TrialViewModelFactory(private  val repository: TrialRepository) : ViewModelProvider.Factory {
